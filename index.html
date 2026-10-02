@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How Breathing Works</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main>
+
+    <header>
+        <h1>How Breathing Works</h1>
+        <p>Observe what happens during inhalation and exhalation.</p>
+    </header>
+
+    <section class="animation-card">
+
+        <div id="phaseLabel" class="phase-label">
+            Ready
+        </div>
+
+
+        <div id="stage" class="stage">
+
+            <!-- =====================================
+                 POSTERIOR / BACK RIB-CAGE LAYER
+
+                 This copy sits BEHIND the lungs.
+                 ===================================== -->
+
+            <img
+                id="ribcageBack"
+                class="ribcage-layer ribcage-back"
+                src="images/ribcage.png"
+                alt=""
+                aria-hidden="true"
+            >
+
+
+            <!-- =====================================
+                 LUNGS
+                 ===================================== -->
+
+            <img
+                id="lungs"
+                src="images/lungs.png"
+                alt="Lungs"
+            >
+
+
+            <!-- =====================================
+                 AIRWAYS
+                 ===================================== -->
+
+            <img
+                id="airways"
+                src="images/airways.png"
+                alt="Trachea and bronchial airways"
+            >
+
+
+            <!-- =====================================
+                 ANTERIOR / FRONT RIB-CAGE LAYER
+
+                 This is the SAME rib-cage image.
+
+                 CSS will reveal only the portions
+                 that should visually pass in front
+                 of the lungs.
+                 ===================================== -->
+
+            <div
+                id="ribcageFrontWindow"
+                class="ribcage-front-window"
+                aria-hidden="true"
+            >
+
+                <img
+                    id="ribcageFront"
+                    class="ribcage-layer ribcage-front"
+                    src="images/ribcage.png"
+                    alt=""
+                >
+
+            </div>
+
+
+            <!-- =====================================
+                 DIAPHRAGM
+                 ===================================== -->
+
+            <img
+                id="diaphragm"
+                src="images/diaphragm.png"
+                alt="Diaphragm"
+            >
+
+
+            <!-- =====================================
+                 AIRFLOW
+                 ===================================== -->
+
+            <svg
+                id="airflow"
+                viewBox="0 0 1000 1000"
+                aria-hidden="true"
+            >
+
+                <defs>
+
+                    <!-- OXYGEN PATHS -->
+
+                    <path
+                        id="oxygenCenter"
+                        d="M500 45 C500 140 500 220 500 330"
+                    />
+
+                    <path
+                        id="oxygenRight"
+                        d="
+                        M500 330
+                        C445 360 390 405 330 465
+                        C290 505 260 555 240 610
+                        "
+                    />
+
+                    <path
+                        id="oxygenLeft"
+                        d="
+                        M500 330
+                        C555 360 610 405 670 465
+                        C710 505 740 555 760 610
+                        "
+                    />
+
+
+                    <!-- CARBON DIOXIDE PATHS -->
+
+                    <path
+                        id="carbonRight"
+                        d="
+                        M240 610
+                        C260 555 290 505 330 465
+                        C390 405 445 360 500 330
+                        "
+                    />
+
+                    <path
+                        id="carbonLeft"
+                        d="
+                        M760 610
+                        C740 555 710 505 670 465
+                        C610 405 555 360 500 330
+                        "
+                    />
+
+                    <path
+                        id="carbonCenter"
+                        d="
+                        M500 330
+                        C500 220 500 140 500 45
+                        "
+                    />
+
+                </defs>
+
+
+                <!-- =================================
+                     OXYGEN PARTICLES
+                     ================================= -->
+
+                <g id="oxygenParticles">
+
+                    <circle
+                        class="oxygen-particle"
+                        r="10"
+                    >
+                        <animateMotion
+                            dur="2s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#oxygenCenter"/>
+                        </animateMotion>
+                    </circle>
+
+
+                    <circle
+                        class="oxygen-particle"
+                        r="8"
+                    >
+                        <animateMotion
+                            dur="2s"
+                            begin=".6s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#oxygenCenter"/>
+                        </animateMotion>
+                    </circle>
+
+
+                    <circle
+                        class="oxygen-particle"
+                        r="9"
+                    >
+                        <animateMotion
+                            dur="2.4s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#oxygenRight"/>
+                        </animateMotion>
+                    </circle>
+
+
+                    <circle
+                        class="oxygen-particle"
+                        r="7"
+                    >
+                        <animateMotion
+                            dur="2.4s"
+                            begin=".7s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#oxygenRight"/>
+                        </animateMotion>
+                    </circle>
+
+
+                    <circle
+                        class="oxygen-particle"
+                        r="9"
+                    >
+                        <animateMotion
+                            dur="2.4s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#oxygenLeft"/>
+                        </animateMotion>
+                    </circle>
+
+
+                    <circle
+                        class="oxygen-particle"
+                        r="7"
+                    >
+                        <animateMotion
+                            dur="2.4s"
+                            begin=".7s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#oxygenLeft"/>
+                        </animateMotion>
+                    </circle>
+
+                </g>
+
+
+                <!-- =================================
+                     CARBON DIOXIDE PARTICLES
+                     ================================= -->
+
+                <g id="carbonParticles">
+
+                    <circle
+                        class="carbon-particle"
+                        r="9"
+                    >
+                        <animateMotion
+                            dur="2.3s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#carbonRight"/>
+                        </animateMotion>
+                    </circle>
+
+
+                    <circle
+                        class="carbon-particle"
+                        r="7"
+                    >
+                        <animateMotion
+                            dur="2.3s"
+                            begin=".7s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#carbonRight"/>
+                        </animateMotion>
+                    </circle>
+
+
+                    <circle
+                        class="carbon-particle"
+                        r="9"
+                    >
+                        <animateMotion
+                            dur="2.3s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#carbonLeft"/>
+                        </animateMotion>
+                    </circle>
+
+
+                    <circle
+                        class="carbon-particle"
+                        r="7"
+                    >
+                        <animateMotion
+                            dur="2.3s"
+                            begin=".7s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#carbonLeft"/>
+                        </animateMotion>
+                    </circle>
+
+
+                    <circle
+                        class="carbon-particle"
+                        r="10"
+                    >
+                        <animateMotion
+                            dur="2s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#carbonCenter"/>
+                        </animateMotion>
+                    </circle>
+
+
+                    <circle
+                        class="carbon-particle"
+                        r="8"
+                    >
+                        <animateMotion
+                            dur="2s"
+                            begin=".6s"
+                            repeatCount="indefinite"
+                        >
+                            <mpath href="#carbonCenter"/>
+                        </animateMotion>
+                    </circle>
+
+                </g>
+
+            </svg>
+
+
+            <!-- =====================================
+                 GAS INDICATOR
+                 ===================================== -->
+
+            <div
+                id="gasIndicator"
+                class="gas-indicator"
+            >
+                <span id="gasSymbol">O₂</span>
+                <span id="gasDirection">↓</span>
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             CONTROLS
+             ========================================= -->
+
+        <div class="controls">
+
+            <button
+                id="inhaleButton"
+                class="inhale-button"
+            >
+                Inhale
+            </button>
+
+
+            <button
+                id="exhaleButton"
+                class="exhale-button"
+            >
+                Exhale
+            </button>
+
+
+            <button
+                id="continuousButton"
+                class="continuous-button"
+            >
+                ▶ Continuous Breathing
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="animation.js"></script>
+
+</body>
+
+</html>

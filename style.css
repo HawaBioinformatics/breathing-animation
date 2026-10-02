@@ -1,0 +1,687 @@
+/* =========================================
+   PAGE
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px 16px 45px;
+    background: #fffdf9;
+    color: #353535;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    text-align: center;
+}
+
+main {
+    width: min(900px, 100%);
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+h1 {
+    margin: 4px 0;
+    font-size: clamp(34px, 6vw, 50px);
+    letter-spacing: -1px;
+}
+
+header p {
+    margin: 0 0 18px;
+    color: #666;
+    font-size: 18px;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.animation-card {
+    position: relative;
+    padding: 14px 18px 28px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 15px 45px rgba(75, 45, 35, 0.08);
+}
+
+
+/* =========================================
+   PHASE LABEL
+========================================= */
+
+.phase-label {
+    position: relative;
+    z-index: 30;
+
+    display: inline-block;
+
+    min-width: 210px;
+    margin-bottom: 4px;
+    padding: 9px 24px;
+
+    border-radius: 30px;
+
+    background: #efedeb;
+    color: #666;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    transition:
+        background 0.5s ease,
+        color 0.5s ease;
+}
+
+
+/* =========================================
+   STAGE
+========================================= */
+
+.stage {
+    position: relative;
+
+    width: min(680px, 100%);
+    height: 735px;
+
+    margin: 0 auto 10px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   SHARED RIB-CAGE SETTINGS
+========================================= */
+
+.ribcage-layer {
+    position: absolute;
+
+    left: 50%;
+    top: 112px;
+
+    width: 565px;
+
+    transform:
+        translateX(-50%)
+        translateY(0)
+        scaleX(1)
+        scaleY(1);
+
+    transform-origin: center 58%;
+
+    transition:
+        transform 3.6s
+        cubic-bezier(0.37, 0, 0.18, 1);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   POSTERIOR RIB CAGE
+   BEHIND THE LUNGS
+========================================= */
+
+.ribcage-back {
+    z-index: 1;
+
+    opacity: 0.30;
+}
+
+
+/* =========================================
+   LUNGS
+========================================= */
+
+#lungs {
+    position: absolute;
+
+    z-index: 3;
+
+    left: 50%;
+    top: 148px;
+
+    width: 405px;
+
+    transform:
+        translateX(-50%)
+        translateY(0)
+        scaleX(1)
+        scaleY(1);
+
+    transform-origin: center 68%;
+
+    transition:
+        transform 3.6s
+        cubic-bezier(0.37, 0, 0.18, 1);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   AIRWAYS
+========================================= */
+
+#airways {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 50%;
+    top: 47px;
+
+    width: 398px;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   FRONT RIB-CAGE WINDOW
+========================================= */
+
+/*
+   This container occupies the same area
+   as the complete rib cage.
+
+   The second copy of ribcage.png lives
+   inside it.
+
+   We use masking to emphasize the
+   anterior/central portion instead of
+   displaying another complete skeleton.
+*/
+
+.ribcage-front-window {
+    position: absolute;
+
+    z-index: 6;
+
+    left: 50%;
+    top: 112px;
+
+    width: 565px;
+    height: 500px;
+
+    transform: translateX(-50%);
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    /*
+       Central/anterior visibility mask.
+
+       The center is strongest because this
+       represents the sternum and anterior
+       chest wall.
+
+       It fades toward the outer/posterior
+       portions.
+    */
+
+    -webkit-mask-image:
+        radial-gradient(
+            ellipse 48% 76% at 50% 48%,
+            black 0%,
+            black 40%,
+            rgba(0,0,0,0.78) 54%,
+            rgba(0,0,0,0.30) 68%,
+            transparent 82%
+        );
+
+    mask-image:
+        radial-gradient(
+            ellipse 48% 76% at 50% 48%,
+            black 0%,
+            black 40%,
+            rgba(0,0,0,0.78) 54%,
+            rgba(0,0,0,0.30) 68%,
+            transparent 82%
+        );
+}
+
+
+/* =========================================
+   FRONT RIB CAGE
+========================================= */
+
+.ribcage-front {
+    z-index: 6;
+
+    /*
+       Because this image is positioned
+       inside a container that already starts
+       at the rib-cage position, its top must
+       begin at zero relative to that window.
+    */
+
+    top: 0;
+
+    opacity: 0.54;
+}
+
+
+/* =========================================
+   DIAPHRAGM
+========================================= */
+
+#diaphragm {
+    position: absolute;
+
+    z-index: 4;
+
+    left: 50%;
+    top: 475px;
+
+    width: 440px;
+
+    transform:
+        translateX(-50%)
+        translateY(0)
+        scaleX(1)
+        scaleY(1);
+
+    transform-origin: center 28%;
+
+    transition:
+        transform 3.6s
+        cubic-bezier(0.37, 0, 0.18, 1);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   AIRFLOW
+========================================= */
+
+#airflow {
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+    top: 25px;
+
+    width: 530px;
+    height: 570px;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   OXYGEN
+========================================= */
+
+#oxygenParticles {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.oxygen-particle {
+    fill: #20a8e5;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.18));
+}
+
+
+/* =========================================
+   CARBON DIOXIDE
+========================================= */
+
+#carbonParticles {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.carbon-particle {
+    fill: #e24c55;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.18));
+}
+
+
+/* =========================================
+   ACTIVE GAS
+========================================= */
+
+.stage.inhaling #oxygenParticles {
+    opacity: 1;
+}
+
+.stage.inhaling #carbonParticles {
+    opacity: 0;
+}
+
+.stage.exhaling #oxygenParticles {
+    opacity: 0;
+}
+
+.stage.exhaling #carbonParticles {
+    opacity: 1;
+}
+
+
+/* =========================================
+   GAS INDICATOR
+========================================= */
+
+.gas-indicator {
+    position: absolute;
+
+    z-index: 20;
+
+    top: 32px;
+    right: 30px;
+
+    display: none;
+
+    align-items: center;
+    gap: 5px;
+
+    padding: 7px 13px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.92);
+
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.stage.inhaling .gas-indicator {
+    display: flex;
+    color: #168fc8;
+}
+
+.stage.exhaling .gas-indicator {
+    display: flex;
+    color: #cf414a;
+}
+
+
+/* =========================================
+   INHALATION
+========================================= */
+
+/*
+   Rib cage:
+   upward + outward
+
+   Both rib-cage copies receive the SAME
+   transform.
+*/
+
+.stage.inhaling .ribcage-back,
+.stage.inhaling .ribcage-front {
+    transform:
+        translateX(-50%)
+        translateY(-7px)
+        scaleX(1.08)
+        scaleY(1.025);
+}
+
+
+/*
+   The window itself also follows the
+   rib cage so the front mask stays aligned.
+*/
+
+.stage.inhaling .ribcage-front-window {
+    transform:
+        translateX(-50%)
+        translateY(-7px)
+        scaleX(1.08)
+        scaleY(1.025);
+}
+
+
+/* LUNGS EXPAND */
+
+.stage.inhaling #lungs {
+    transform:
+        translateX(-50%)
+        translateY(6px)
+        scaleX(1.07)
+        scaleY(1.045);
+}
+
+
+/* DIAPHRAGM CONTRACTS / FLATTENS */
+
+.stage.inhaling #diaphragm {
+    transform:
+        translateX(-50%)
+        translateY(22px)
+        scaleX(1.12)
+        scaleY(0.60);
+}
+
+
+/* =========================================
+   EXHALATION
+========================================= */
+
+/*
+   Rib cage:
+   downward + inward
+*/
+
+.stage.exhaling .ribcage-back,
+.stage.exhaling .ribcage-front {
+    transform:
+        translateX(-50%)
+        translateY(3px)
+        scaleX(0.98)
+        scaleY(0.99);
+}
+
+
+.stage.exhaling .ribcage-front-window {
+    transform:
+        translateX(-50%)
+        translateY(3px)
+        scaleX(0.98)
+        scaleY(0.99);
+}
+
+
+/* LUNGS DECREASE IN VOLUME */
+
+.stage.exhaling #lungs {
+    transform:
+        translateX(-50%)
+        translateY(-3px)
+        scaleX(0.96)
+        scaleY(0.97);
+}
+
+
+/* DIAPHRAGM RETURNS TO DOME */
+
+.stage.exhaling #diaphragm {
+    transform:
+        translateX(-50%)
+        translateY(-2px)
+        scaleX(0.98)
+        scaleY(1.05);
+}
+
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+.controls {
+    position: relative;
+
+    z-index: 30;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+    flex-wrap: wrap;
+
+    width: 100%;
+
+    margin: 0 auto;
+
+    padding: 20px 10px 2px;
+
+    border-top: 1px solid rgba(0,0,0,0.07);
+
+    background: white;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+button {
+    min-width: 140px;
+
+    padding: 13px 25px;
+
+    border: none;
+    border-radius: 28px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+
+/* BUTTON COLORS */
+
+.inhale-button {
+    background: #bce8f7;
+    color: #1e7192;
+}
+
+.exhale-button {
+    background: #f7c2c5;
+    color: #9d3f48;
+}
+
+.continuous-button {
+    min-width: 220px;
+
+    background: #e9e4f5;
+    color: #65558b;
+}
+
+
+/* ACTIVE BUTTONS */
+
+.inhale-button.active {
+    box-shadow: 0 0 0 4px rgba(32,168,229,0.18);
+}
+
+.exhale-button.active {
+    box-shadow: 0 0 0 4px rgba(226,76,85,0.17);
+}
+
+.continuous-button.active {
+    box-shadow: 0 0 0 4px rgba(101,85,139,0.16);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 700px) {
+
+    .stage {
+        width: 650px;
+        height: 720px;
+
+        transform: scale(0.88);
+        transform-origin: top center;
+
+        margin-bottom: -80px;
+    }
+
+}
+
+
+/* =========================================
+   PHONE
+========================================= */
+
+@media (max-width: 520px) {
+
+    body {
+        padding: 12px 6px 28px;
+    }
+
+    .animation-card {
+        padding: 10px 6px 18px;
+        border-radius: 22px;
+    }
+
+    header p {
+        font-size: 16px;
+    }
+
+    .phase-label {
+        min-width: 190px;
+        font-size: 16px;
+    }
+
+    .stage {
+        width: 650px;
+        height: 720px;
+
+        transform: scale(0.64);
+        transform-origin: top center;
+
+        margin-bottom: -245px;
+    }
+
+    .controls {
+        gap: 8px;
+    }
+
+    button {
+        min-width: 115px;
+        padding: 11px 18px;
+        font-size: 16px;
+    }
+
+    .continuous-button {
+        min-width: 205px;
+    }
+
+}
